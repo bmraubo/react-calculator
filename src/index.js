@@ -33,24 +33,25 @@ class Calculator extends React.Component {
                     {this.renderButton("C")}
                     {this.renderButton("/")}
                     {this.renderButton("X")}
+                    {this.renderButton("-")}
                 </div>
                 <div>
                     {this.renderButton(7)}
                     {this.renderButton(8)}
                     {this.renderButton(9)}
-                    {this.renderButton("-")}
+                    {this.renderButton("+")}
                 </div>
                 <div>
                     {this.renderButton(4)}
                     {this.renderButton(5)}
                     {this.renderButton(6)}
-                    {this.renderButton("+")}
+                    {this.renderButton("=")}
                 </div>
                 <div>
                     {this.renderButton(1)}
                     {this.renderButton(2)}
                     {this.renderButton(3)}
-                    {this.renderButton("=")}
+                    {this.renderButton(0)}                  
                 </div>
             </div>
         );
