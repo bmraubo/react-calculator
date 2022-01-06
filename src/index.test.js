@@ -26,6 +26,6 @@ describe("Testing Frontend", () => {
             )
         })
         fireEvent.click(screen.getByText("="));
-        expect(screen.getByTestId("Display").data).toBe(0);
+        expect(screen.getByTestId("Display").textContent).toBe("0");
     });
 });

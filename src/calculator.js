@@ -37,10 +37,11 @@ export default class Calculator extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            currentDisplay: "0",
             firstNumber: 0,
-            operation: null,
+            operation: calculate.add,
             secondNumber: 0,
-            result: 0,
+            result: null,
         };
     }
 
@@ -62,11 +63,17 @@ export default class Calculator extends React.Component {
         );
     }
 
+    handleEqualButtonClick(props) {
+        this.state.secondNumber = parseInt(this.state.currentDisplay);
+        this.state.result = calculate.calculate(this.state.firstNumber, this.state.secondNumber, this.state.operation);
+        this.state.currentDisplay = this.state.result;
+    }
+
     render() {
         return (
             <div>
                 <h3 data-testid="Display">
-                    {this.state.result}
+                    {this.state.currentDisplay}
                 </h3>
                 <div>
                     {this.renderOperationsButton("C")}
