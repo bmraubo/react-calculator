@@ -28,7 +28,7 @@ function OperationsButton(props) {
 function EqualsButton(props) {
     return (
         <button>
-            [props.value]
+            {props.value}
         </button>
     );
 }
@@ -58,7 +58,7 @@ export default class Calculator extends React.Component {
 
     renderEqualsButton(value) {
         return (
-            <OperationsButton value={value} />
+            <EqualsButton value={value} />
         );
     }
 
