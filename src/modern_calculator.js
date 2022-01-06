@@ -4,50 +4,31 @@ import Calculate from "./calculate";
 
 const calculate = new Calculate();
 
-
-
 export default function ModernCalculator() {
     const [display, setDisplay] = useState("0")
     const [firstNumber, setFirstNumber] = useState("0")
     const [secondNumber, setSecondNumber] = useState("0")
     const [operation, setOperation] = useState(calculate.add)
 
-    function Display({value}) {
-        return <h3 data-testid="Display">{value}</h3>
-    }
-    
-    function NumberButton({value}) {
-        return <button onClick={handleNumberButtonClick(value)}>{value}</button>
-    }
-    
-    function OperationsButton({value}) {
-        return <button>{value}</button>
-    }
-    
-    function EqualsButton({value}) {
-        return <button>{value}</button>
-    }
-    
-    function handleEqualButtonClick() {
-        // set second number
-        // execute operation
-        // update display
-    }
-    
-    function handleNumberButtonClick({value}) {
-        // add button value to display buffer
-        if ({display} === "0") {
-            setDisplay({value})
-        } else {
-            setDisplay({display} + {value})
-        }
-    }
-
     return (
         <div>
             <div>
                 <Display value={display}/>
             </div>
+            <div>
+                <Keypad />
+            </div>
+        </div>
+    )
+}
+
+function Display({value}) {
+    return <h3 data-testid="Display">{value}</h3>
+}
+
+function Keypad() {
+    return (
+        <div>
             <div>
                 <OperationsButton value="C"></OperationsButton>
                 <OperationsButton value="/"></OperationsButton>
@@ -62,7 +43,7 @@ export default function ModernCalculator() {
             </div>
             <div>
                 <NumberButton value="4"></NumberButton>
-                <NumberButton value="5"></NumberButton>a
+                <NumberButton value="5"></NumberButton>
                 <NumberButton value="6"></NumberButton>
                 <EqualsButton value="="></EqualsButton>
             </div>
@@ -73,9 +54,17 @@ export default function ModernCalculator() {
                 <NumberButton value="0"></NumberButton>
             </div>
         </div>
-        
-        
     )
 }
 
-module.exports = ModernCalculator;
+function NumberButton({value}) {
+    return <button>{value}</button>
+}
+
+function OperationsButton({value}) {
+    return <button>{value}</button>
+}
+
+function EqualsButton({value}) {
+    return <button>{value}</button>
+}
