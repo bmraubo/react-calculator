@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Calculate from "./calculate";
 
@@ -8,7 +8,8 @@ export default function ModernCalculator() {
     const [display, setDisplay] = useState("0")
     const [firstNumber, setFirstNumber] = useState(0)
     const [secondNumber, setSecondNumber] = useState(0)
-    const [operation, setOperation] = useState(calculate.add)
+    const [operation, setOperation] = useState("+")
+    
 
     const operations = {
         "X": calculate.multiply,
@@ -16,6 +17,8 @@ export default function ModernCalculator() {
         "-": calculate.subtract,
         "/": calculate.divide,
     };
+
+    useEffect(() => console.log("to hell with react"))
 
     function Display({value}) {
         return <h3 data-testid="Display">{value}</h3>
@@ -33,19 +36,41 @@ export default function ModernCalculator() {
                 </button>
     }
 
+    function readDisplay() {
+        let splitDisplay = display.split(operation)
+        console.log(splitDisplay)
+        if (splitDisplay.length < 2) {
+            return [parseInt(splitDisplay[0]), 0]
+        } else {
+            return [parseInt(splitDisplay[0]), parseInt(splitDisplay[1])]
+        }
+    }
+
     function OperationsButton({value}) {
         return <button onClick={() => {
             // lock in firstNumber
-            setFirstNumber(parseInt(display))
+            console.log(display)
             // lock in operation
-            setOperation(operations[value])
+            setOperation(value)
             // display operation space operation sign space
-            setDisplay(display + " " + value + " ")
+            setDisplay(display+value)
+            console.log("Operation: " + operation)
         }}>{value}</button>
-    }    
-
+    }
+    
     function EqualsButton({value}) {
         return <button onClick={() => {
+            console.log("Equals Display: " + display)
+            // lock in second number (will have to split string)
+            var numbers = readDisplay()
+            setDisplay(display)
+            console.log(numbers)
+            console.log("Equals First Number: " + numbers[0])
+            console.log("Equals Second Number: " + numbers[1])
+            // send data to calculate function and display result
+            var result = calculate.calculate(numbers[0], numbers[1], operations[operation])
+            console.log("Result: " + result)
+            setDisplay(result)
         }}>{value}</button>
     }
 

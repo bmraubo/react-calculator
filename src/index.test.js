@@ -13,14 +13,15 @@ describe("Testing Frontend", () => {
         expect(screen.getByTestId("Display").textContent).toBe("0");
     });
 
-    it("Pressing 1, 2, and = returns 12", () => {
+    it("Pressing 1 + 2 = returns 3", () => {
         render(
             <ModernCalculator />
         )
         fireEvent.click(screen.getByText("1"));
+        fireEvent.click(screen.getByText("+"));
         fireEvent.click(screen.getByText("2"));
         fireEvent.click(screen.getByText("="));
-        expect(screen.getByTestId("Display").textContent).toBe("12");
+        expect(screen.getByTestId("Display").textContent).toBe("3");
     });
 
     it("Pressing 1 and 2 displays 12", () => {
@@ -39,6 +40,6 @@ describe("Testing Frontend", () => {
         fireEvent.click(screen.getByText("2"));
         fireEvent.click(screen.getByText("+"));
         fireEvent.click(screen.getByText("5"));
-        expect(screen.getByTestId("Display").textContent).toBe("2+5");
+        expect(screen.getByTestId("Display").textContent).toBe("2 + 5");
     });
 });
