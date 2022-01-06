@@ -41,7 +41,6 @@ export default class Calculator extends React.Component {
             firstNumber: 0,
             operation: calculate.add,
             secondNumber: 0,
-            result: null,
         };
     }
 
@@ -70,7 +69,6 @@ export default class Calculator extends React.Component {
                 firstNumber: this.state.firstNumber,
                 secondNumber: this.state.secondNumber,
                 operation: this.state.operation,
-                result: this.state.result,
                 currentDisplay: value,
             })
         } else {
@@ -78,7 +76,6 @@ export default class Calculator extends React.Component {
                 firstNumber: this.state.firstNumber,
                 secondNumber: this.state.secondNumber,
                 operation: this.state.operation,
-                result: this.state.result,
                 currentDisplay: this.state.currentDisplay + value,
             })
         }
@@ -86,13 +83,14 @@ export default class Calculator extends React.Component {
 
     handleEqualButtonClick(props) {
         console.log("equals")
+        console.log(calculate.calculate(this.state.firstNumber, this.state.secondNumber, this.state.operation))
         this.setState({
             firstNumber: this.firstNumber,
             secondNumber: parseInt(this.state.currentDisplay),
             operation: this.operation,
-            result: calculate.calculate(this.state.firstNumber, this.state.secondNumber, this.state.operation),
-            currentDisplay: this.state.result.toString(),
+            currentDisplay: calculate.calculate(this.state.firstNumber, this.state.secondNumber, this.state.operation).toString(),
         })
+        console.log(this.state.currentDisplay)
     }
 
     render() {
