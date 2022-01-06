@@ -1,6 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Calculate from "./calculate";
 
+const calculate = new Calculate();
+const operations = {
+    "X": calculate.multiply,
+    "+": calculate.add,
+    "-": calculate.subtract,
+    "/": calculate.divide,
+};
 
 function Button(props) {
     return (
