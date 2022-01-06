@@ -10,23 +10,37 @@ export default function ModernCalculator() {
     const [secondNumber, setSecondNumber] = useState("0")
     const [operation, setOperation] = useState(calculate.add)
 
+    function Display({value}) {
+        return <h3 data-testid="Display">{value}</h3>
+    }
+
+    function NumberButton({value}) {
+        return <button onClick={() => {
+                    if (display === "0") {
+                        setDisplay(value)
+                    } else {
+                        setDisplay(display + value)
+                    }
+                }}>
+                    {value}
+                </button>
+    }
+
     return (
         <div>
             <div>
                 <Display value={display}/>
             </div>
             <div>
-                <Keypad />
+                <Keypad NumberButton={NumberButton}/>
             </div>
         </div>
     )
 }
 
-function Display({value}) {
-    return <h3 data-testid="Display">{value}</h3>
-}
 
-function Keypad() {
+
+function Keypad({NumberButton}) {
     return (
         <div>
             <div>
@@ -57,9 +71,7 @@ function Keypad() {
     )
 }
 
-function NumberButton({value}) {
-    return <button>{value}</button>
-}
+
 
 function OperationsButton({value}) {
     return <button>{value}</button>
