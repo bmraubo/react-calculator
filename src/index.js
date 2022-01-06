@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Calculator from "./calculator"
+import ModernCalculator from "./modern_calculator"
 
 ReactDOM.render(
-    <Calculator />,
+    <ModernCalculator />,
     document.getElementById('root')
 );
