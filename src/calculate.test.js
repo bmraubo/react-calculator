@@ -9,4 +9,8 @@ describe ("Testing Calculate functions", () => {
     it("subtracting 2 from 4 should equal 2", () => {
         expect(calculate.subtract(4,2)).toBe(2);
     });
+
+    it("multiplying 2 by 5 should equal 10", () => {
+        expect(calculate.multiply(2,5)).toBe(10);
+    });
 })
