@@ -17,4 +17,8 @@ describe ("Testing Calculate functions", () => {
     it("dividing 10 by 2 should equal 5", () => {
         expect(calculate.divide(10,2)).toBe(5);
     });
+
+    it("given multiply, it will multiply 3 and 4, returning 12", () => {
+        expect(calculate.calculate(3, 4, calculate.multiply)).toBe(12);
+    })
 })
