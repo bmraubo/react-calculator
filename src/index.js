@@ -1,0 +1,55 @@
+import React from "react";
+import ReactDOM from "react-dom";
+
+
+function Button(props) {
+    return (
+        <button>
+            {props.value}
+        </button>
+    )
+}
+
+class Calculator extends React.Component {
+
+    renderButton(value) {
+        return (
+            <Button value={value} />
+        )
+    }
+
+    render() {
+        return (
+            <div>
+                <div>
+                    {this.renderButton("C")}
+                    {this.renderButton("/")}
+                    {this.renderButton("X")}
+                </div>
+                <div>
+                    {this.renderButton(7)}
+                    {this.renderButton(8)}
+                    {this.renderButton(9)}
+                    {this.renderButton("-")}
+                </div>
+                <div>
+                    {this.renderButton(4)}
+                    {this.renderButton(5)}
+                    {this.renderButton(6)}
+                    {this.renderButton("+")}
+                </div>
+                <div>
+                    {this.renderButton(1)}
+                    {this.renderButton(2)}
+                    {this.renderButton(3)}
+                    {this.renderButton("=")}
+                </div>
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(
+    <Calculator />,
+    document.getElementById('root')
+);
