@@ -31,4 +31,14 @@ describe("Testing Frontend", () => {
         fireEvent.click(screen.getByText("2"));
         expect(screen.getByTestId("Display").textContent).toBe("12");
     });
+
+    it("Pressing 2, +, 5 displays 2+5", () => {
+        render(
+            <ModernCalculator />
+        ) 
+        fireEvent.click(screen.getByText("2"));
+        fireEvent.click(screen.getByText("+"));
+        fireEvent.click(screen.getByText("5"));
+        expect(screen.getByTestId("Display").textContent).toBe("2+5");
+    });
 });

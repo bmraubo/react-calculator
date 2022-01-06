@@ -6,9 +6,16 @@ const calculate = new Calculate();
 
 export default function ModernCalculator() {
     const [display, setDisplay] = useState("0")
-    const [firstNumber, setFirstNumber] = useState("0")
-    const [secondNumber, setSecondNumber] = useState("0")
+    const [firstNumber, setFirstNumber] = useState(0)
+    const [secondNumber, setSecondNumber] = useState(0)
     const [operation, setOperation] = useState(calculate.add)
+
+    const operations = {
+        "X": calculate.multiply,
+        "+": calculate.add,
+        "-": calculate.subtract,
+        "/": calculate.divide,
+    };
 
     function Display({value}) {
         return <h3 data-testid="Display">{value}</h3>
@@ -26,13 +33,29 @@ export default function ModernCalculator() {
                 </button>
     }
 
+    function OperationsButton({value}) {
+        return <button onClick={() => {
+            // lock in firstNumber
+            setFirstNumber(parseInt(display))
+            // lock in operation
+            setOperation(operations[value])
+            // display operation space operation sign space
+            setDisplay(display + " " + value + " ")
+        }}>{value}</button>
+    }    
+
+    function EqualsButton({value}) {
+        return <button onClick={() => {
+        }}>{value}</button>
+    }
+
     return (
         <div>
             <div>
                 <Display value={display}/>
             </div>
             <div>
-                <Keypad NumberButton={NumberButton}/>
+                <Keypad NumberButton={NumberButton} EqualsButton={EqualsButton} OperationsButton={OperationsButton}/>
             </div>
         </div>
     )
@@ -40,7 +63,7 @@ export default function ModernCalculator() {
 
 
 
-function Keypad({NumberButton}) {
+function Keypad({NumberButton, EqualsButton, OperationsButton}) {
     return (
         <div>
             <div>
@@ -73,10 +96,5 @@ function Keypad({NumberButton}) {
 
 
 
-function OperationsButton({value}) {
-    return <button>{value}</button>
-}
 
-function EqualsButton({value}) {
-    return <button>{value}</button>
-}
+
