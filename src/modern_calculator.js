@@ -1,16 +1,47 @@
 import React from "react";
 import { useState } from "react";
+import Calculate from "./calculate";
 
-function Display({value}) {
-    return <h3>{value}</h3>
-}
+const calculate = new Calculate();
 
-function Button({value}) {
-    return <button>{value}</button>
-}
+
 
 export default function ModernCalculator() {
     const [display, setDisplay] = useState("0")
+    const [firstNumber, setFirstNumber] = useState("0")
+    const [secondNumber, setSecondNumber] = useState("0")
+    const [operation, setOperation] = useState(calculate.add)
+
+    function Display({value}) {
+        return <h3 data-testid="Display">{value}</h3>
+    }
+    
+    function NumberButton({value}) {
+        return <button onClick={handleNumberButtonClick(value)}>{value}</button>
+    }
+    
+    function OperationsButton({value}) {
+        return <button>{value}</button>
+    }
+    
+    function EqualsButton({value}) {
+        return <button>{value}</button>
+    }
+    
+    function handleEqualButtonClick() {
+        // set second number
+        // execute operation
+        // update display
+    }
+    
+    function handleNumberButtonClick({value}) {
+        // add button value to display buffer
+        if ({display} === "0") {
+            setDisplay({value})
+        } else {
+            setDisplay({display} + {value})
+        }
+    }
 
     return (
         <div>
@@ -18,31 +49,33 @@ export default function ModernCalculator() {
                 <Display value={display}/>
             </div>
             <div>
-                <Button value="C"></Button>
-                <Button value="/"></Button>
-                <Button value="X"></Button>
-                <Button value="-"></Button>
+                <OperationsButton value="C"></OperationsButton>
+                <OperationsButton value="/"></OperationsButton>
+                <OperationsButton value="X"></OperationsButton>
+                <OperationsButton value="-"></OperationsButton>
             </div>
             <div>
-                <Button value="7"></Button>
-                <Button value="8"></Button>
-                <Button value="9"></Button>
-                <Button value="+"></Button>
+                <NumberButton value="7"></NumberButton>
+                <NumberButton value="8"></NumberButton>
+                <NumberButton value="9"></NumberButton>
+                <OperationsButton value="+"></OperationsButton>
             </div>
             <div>
-                <Button value="4"></Button>
-                <Button value="5"></Button>
-                <Button value="6"></Button>
-                <Button value="="></Button>
+                <NumberButton value="4"></NumberButton>
+                <NumberButton value="5"></NumberButton>a
+                <NumberButton value="6"></NumberButton>
+                <EqualsButton value="="></EqualsButton>
             </div>
             <div>
-                <Button value="1"></Button>
-                <Button value="2"></Button>
-                <Button value="3"></Button>
-                <Button value="0"></Button>
+                <NumberButton value="1"></NumberButton>
+                <NumberButton value="2"></NumberButton>
+                <NumberButton value="3"></NumberButton>
+                <NumberButton value="0"></NumberButton>
             </div>
         </div>
         
         
     )
 }
+
+module.exports = ModernCalculator;

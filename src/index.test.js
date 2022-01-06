@@ -1,44 +1,34 @@
 import React from 'react';
 import {render, fireEvent, screen} from '@testing-library/react';
 import '@testing-library/jest-dom';
-import {Calculator} from "./calculator"
-import { unmountComponentAtNode } from 'react-dom';
-import { act } from 'react-dom/test-utils';
+import ModernCalculator from "./modern_calculator"
 
 describe("Testing Frontend", () => {
-    let container = null;
-    beforeEach(()=> {
-        container = document.createElement("div");
-        document.body.appendChild(container);
-    });
-
-    afterEach(() => {
-        unmountComponentAtNode(container);
-        container.remove();
-        container = null;
-    })
 
     it("Pressing = returns 0", () => {
-        act(() => {
-            render(
-                <Calculator />,
-                container
-            )
-        })
+        render(
+            <ModernCalculator />
+        )
         fireEvent.click(screen.getByText("="));
         expect(screen.getByTestId("Display").textContent).toBe("0");
     });
 
     it("Pressing 1, 2, and = returns 12", () => {
-        act(() => {
-            render(
-                <Calculator />,
-                container
-            )
-        })
+        render(
+            <ModernCalculator />
+        )
         fireEvent.click(screen.getByText("1"));
         fireEvent.click(screen.getByText("2"));
         fireEvent.click(screen.getByText("="));
+        expect(screen.getByTestId("Display").textContent).toBe("12");
+    });
+
+    it("Pressing 1 and 2 displays 12", () => {
+        render(
+            <ModernCalculator />
+        )
+        fireEvent.click(screen.getByText("1"));
+        fireEvent.click(screen.getByText("2"));
         expect(screen.getByTestId("Display").textContent).toBe("12");
     });
 });
