@@ -7,7 +7,6 @@ const operations = {
     "+": calculate.add,
     "-": calculate.subtract,
     "/": calculate.divide,
-    "=": calculate.calculate,
 };
 
 function NumberButton(props) {
@@ -22,6 +21,14 @@ function OperationsButton(props) {
     return (
         <button>
             {props.value}
+        </button>
+    );
+}
+
+function EqualsButton(props) {
+    return (
+        <button>
+            [props.value]
         </button>
     );
 }
@@ -49,6 +56,12 @@ export default class Calculator extends React.Component {
         );
     }
 
+    renderEqualsButton(value) {
+        return (
+            <OperationsButton value={value} />
+        );
+    }
+
     render() {
         return (
             <div>
@@ -71,7 +84,7 @@ export default class Calculator extends React.Component {
                     {this.renderNumberButton(4)}
                     {this.renderNumberButton(5)}
                     {this.renderNumberButton(6)}
-                    {this.renderOperationsButton("=")}
+                    {this.renderEqualsButton("=")}
                 </div>
                 <div>
                     {this.renderNumberButton(1)}
