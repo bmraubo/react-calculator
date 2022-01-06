@@ -11,7 +11,7 @@ const operations = {
 
 function NumberButton(props) {
     return (
-        <button>
+        <button onClick={props.onClick}>
             {props.value}
         </button>
     );
@@ -19,7 +19,7 @@ function NumberButton(props) {
 
 function OperationsButton(props) {
     return (
-        <button>
+        <button onClick={props.onClick}>
             {props.value}
         </button>
     );
@@ -27,7 +27,7 @@ function OperationsButton(props) {
 
 function EqualsButton(props) {
     return (
-        <button>
+        <button onClick={props.onClick}>
             {props.value}
         </button>
     );
@@ -47,7 +47,7 @@ export default class Calculator extends React.Component {
 
     renderNumberButton(value) {
         return (
-            <NumberButton value={value} />
+            <NumberButton value={value} onClick={() => this.handleNumberButtonClick(value)}/>
         );
     }
 
@@ -59,14 +59,40 @@ export default class Calculator extends React.Component {
 
     renderEqualsButton(value) {
         return (
-            <EqualsButton value={value} />
+            <EqualsButton value={value} onClick={() => this.handleEqualButtonClick()}/>
         );
     }
 
+    handleNumberButtonClick(value) {
+        console.log('num click')
+        if (this.state.currentDisplay === "0") {
+            this.setState({
+                firstNumber: this.state.firstNumber,
+                secondNumber: this.state.secondNumber,
+                operation: this.state.operation,
+                result: this.state.result,
+                currentDisplay: value,
+            })
+        } else {
+            this.setState({
+                firstNumber: this.state.firstNumber,
+                secondNumber: this.state.secondNumber,
+                operation: this.state.operation,
+                result: this.state.result,
+                currentDisplay: this.state.currentDisplay + value,
+            })
+        }
+    }
+
     handleEqualButtonClick(props) {
-        this.state.secondNumber = parseInt(this.state.currentDisplay);
-        this.state.result = calculate.calculate(this.state.firstNumber, this.state.secondNumber, this.state.operation);
-        this.state.currentDisplay = this.state.result;
+        console.log("equals")
+        this.setState({
+            firstNumber: this.firstNumber,
+            secondNumber: parseInt(this.state.currentDisplay),
+            operation: this.operation,
+            result: calculate.calculate(this.state.firstNumber, this.state.secondNumber, this.state.operation),
+            currentDisplay: this.state.result.toString(),
+        })
     }
 
     render() {
