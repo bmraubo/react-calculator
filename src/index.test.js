@@ -40,6 +40,16 @@ describe("Testing Frontend", () => {
         fireEvent.click(screen.getByText("2"));
         fireEvent.click(screen.getByText("+"));
         fireEvent.click(screen.getByText("5"));
-        expect(screen.getByTestId("Display").textContent).toBe("2 + 5");
+        expect(screen.getByTestId("Display").textContent).toBe("2+5");
+    });
+
+    it("Pressing C resets", () => {
+        render(
+            <ModernCalculator />
+        ) 
+        fireEvent.click(screen.getByText("2"));
+        fireEvent.click(screen.getByText("+"));
+        fireEvent.click(screen.getByText("C"));
+        expect(screen.getByTestId("Display").textContent).toBe("0");
     });
 });

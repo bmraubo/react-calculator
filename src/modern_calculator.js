@@ -36,16 +36,6 @@ export default function ModernCalculator() {
                 </button>
     }
 
-    function readDisplay() {
-        let splitDisplay = display.split(operation)
-        console.log(splitDisplay)
-        if (splitDisplay.length < 2) {
-            return [parseInt(splitDisplay[0]), 0]
-        } else {
-            return [parseInt(splitDisplay[0]), parseInt(splitDisplay[1])]
-        }
-    }
-
     function OperationsButton({value}) {
         return <button onClick={() => {
             // lock in firstNumber
@@ -74,13 +64,30 @@ export default function ModernCalculator() {
         }}>{value}</button>
     }
 
+    function ClearButton({value}) {
+        return <button onClick={() => {
+            setOperation("+")
+            setDisplay("0")
+        }}>{value}</button>
+    }
+
+    function readDisplay() {
+        let splitDisplay = display.split(operation)
+        console.log(splitDisplay)
+        if (splitDisplay.length < 2) {
+            return [parseInt(splitDisplay[0]), 0]
+        } else {
+            return [parseInt(splitDisplay[0]), parseInt(splitDisplay[1])]
+        }
+    }
+
     return (
         <div>
             <div>
                 <Display value={display}/>
             </div>
             <div>
-                <Keypad NumberButton={NumberButton} EqualsButton={EqualsButton} OperationsButton={OperationsButton}/>
+                <Keypad NumberButton={NumberButton} EqualsButton={EqualsButton} OperationsButton={OperationsButton} ClearButton={ClearButton}/>
             </div>
         </div>
     )
@@ -88,11 +95,11 @@ export default function ModernCalculator() {
 
 
 
-function Keypad({NumberButton, EqualsButton, OperationsButton}) {
+function Keypad({NumberButton, EqualsButton, OperationsButton, ClearButton}) {
     return (
         <div>
             <div>
-                <OperationsButton value="C"></OperationsButton>
+                <ClearButton value="C"></ClearButton>
                 <OperationsButton value="/"></OperationsButton>
                 <OperationsButton value="X"></OperationsButton>
                 <OperationsButton value="-"></OperationsButton>
