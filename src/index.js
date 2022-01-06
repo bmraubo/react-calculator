@@ -8,50 +8,65 @@ const operations = {
     "+": calculate.add,
     "-": calculate.subtract,
     "/": calculate.divide,
+    "=": calculate.calculate,
 };
 
-function Button(props) {
+function NumberButton(props) {
     return (
         <button>
             {props.value}
         </button>
-    )
+    );
+}
+
+function OperationsButton(props) {
+    return (
+        <button>
+            {props.value}
+        </button>
+    );
 }
 
 class Calculator extends React.Component {
 
-    renderButton(value) {
+    renderNumberButton(value) {
         return (
-            <Button value={value} />
-        )
+            <NumberButton value={value} />
+        );
+    }
+
+    renderOperationsButton(value) {
+        return (
+            <OperationsButton value={value} />
+        );
     }
 
     render() {
         return (
             <div>
                 <div>
-                    {this.renderButton("C")}
-                    {this.renderButton("/")}
-                    {this.renderButton("X")}
-                    {this.renderButton("-")}
+                    {this.renderOperationsButton("C")}
+                    {this.renderOperationsButton("/")}
+                    {this.renderOperationsButton("X")}
+                    {this.renderOperationsButton("-")}
                 </div>
                 <div>
-                    {this.renderButton(7)}
-                    {this.renderButton(8)}
-                    {this.renderButton(9)}
-                    {this.renderButton("+")}
+                    {this.renderNumberButton(7)}
+                    {this.renderNumberButton(8)}
+                    {this.renderNumberButton(9)}
+                    {this.renderOperationsButton("+")}
                 </div>
                 <div>
-                    {this.renderButton(4)}
-                    {this.renderButton(5)}
-                    {this.renderButton(6)}
-                    {this.renderButton("=")}
+                    {this.renderNumberButton(4)}
+                    {this.renderNumberButton(5)}
+                    {this.renderNumberButton(6)}
+                    {this.renderOperationsButton("=")}
                 </div>
                 <div>
-                    {this.renderButton(1)}
-                    {this.renderButton(2)}
-                    {this.renderButton(3)}
-                    {this.renderButton(0)}                  
+                    {this.renderNumberButton(1)}
+                    {this.renderNumberButton(2)}
+                    {this.renderNumberButton(3)}
+                    {this.renderNumberButton(0)}                  
                 </div>
             </div>
         );
