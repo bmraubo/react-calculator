@@ -82,22 +82,22 @@ export default class Calculator extends React.Component {
                     {this.renderOperationsButton("-")}
                 </div>
                 <div>
-                    {this.renderNumberButton(7)}
-                    {this.renderNumberButton(8)}
-                    {this.renderNumberButton(9)}
+                    {this.renderNumberButton("7")}
+                    {this.renderNumberButton("8")}
+                    {this.renderNumberButton("9")}
                     {this.renderOperationsButton("+")}
                 </div>
                 <div>
-                    {this.renderNumberButton(4)}
-                    {this.renderNumberButton(5)}
-                    {this.renderNumberButton(6)}
+                    {this.renderNumberButton("4")}
+                    {this.renderNumberButton("5")}
+                    {this.renderNumberButton("6")}
                     {this.renderEqualsButton("=")}
                 </div>
                 <div>
-                    {this.renderNumberButton(1)}
-                    {this.renderNumberButton(2)}
-                    {this.renderNumberButton(3)}
-                    {this.renderNumberButton(0)}                  
+                    {this.renderNumberButton("1")}
+                    {this.renderNumberButton("2")}
+                    {this.renderNumberButton("3")}
+                    {this.renderNumberButton("0")}                  
                 </div>
             </div>
         );

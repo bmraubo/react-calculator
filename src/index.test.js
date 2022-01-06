@@ -28,4 +28,17 @@ describe("Testing Frontend", () => {
         fireEvent.click(screen.getByText("="));
         expect(screen.getByTestId("Display").textContent).toBe("0");
     });
+
+    it("Pressing 1, 2, and = returns 12", () => {
+        act(() => {
+            render(
+                <Calculator />,
+                container
+            )
+        })
+        fireEvent.click(screen.getByText("1"));
+        fireEvent.click(screen.getByText("2"));
+        fireEvent.click(screen.getByText("="));
+        expect(screen.getByTestId("Display").textContent).toBe("12");
+    });
 });
